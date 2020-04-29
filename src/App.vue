@@ -8,6 +8,14 @@
 
     <div class="container">
 
+      <router-link :to=" {path: '/' }" class="btn btn-info mb-2 mr-2">
+      Home
+      </router-link>
+
+      <router-link to="/contatos" class="btn btn-info mb-2">
+      Contatos
+      </router-link>
+
       <!-- Nesse local que cada component será injetado -->
       <router-view></router-view>
 

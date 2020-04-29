@@ -11,6 +11,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  mode:'history',
+  //mode:'hash', // com a # na url
   routes: [
     { path : '/', component: Home },
     { path : '/contatos', component: Contatos }, // meusite.com/contatos 
