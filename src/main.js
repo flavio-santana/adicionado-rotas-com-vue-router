@@ -1,23 +1,8 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router' 
 import App from './App.vue'
-
-// Importanto components
-import Home from './views/Home.vue'
-import Contatos from './views/contatos/Contatos.vue'
+import router from './router.js'
 
 Vue.config.productionTip = false
-
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  mode:'history',
-  //mode:'hash', // com a # na url
-  routes: [
-    { path : '/', component: Home },
-    { path : '/contatos', component: Contatos }, // meusite.com/contatos 
-  ]
-})
 
 new Vue({
   router, 
