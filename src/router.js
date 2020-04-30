@@ -10,6 +10,7 @@ Vue.use(VueRouter)
 export default new VueRouter({
     mode:'history',
     //mode:'hash', // com a # na url
+    linkExactActiveClass:'active',
     routes: [
       { path : '/', component: Home },
       { path : '/contatos', component: Contatos }, // meusite.com/contatos 

@@ -8,11 +8,15 @@
 
     <div class="container">
 
-      <router-link :to=" {path: '/' }" class="btn btn-info mb-2 mr-2">
+      <router-link 
+        :to=" {path: '/' }" 
+        class="btn btn-info mb-4 mr-2">
       Home
       </router-link>
 
-      <router-link to="/contatos" class="btn btn-info mb-2">
+      <router-link 
+        to="/contatos" 
+        class="btn btn-info mb-4">
       Contatos
       </router-link>
 
