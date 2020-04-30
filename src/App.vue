@@ -16,8 +16,14 @@
 
       <router-link 
         to="/contatos" 
-        class="btn btn-info mb-4">
+        class="btn btn-info mb-4 mr-2">
       Contatos
+      </router-link>
+
+      <router-link 
+        to="/usuarios" 
+        class="btn btn-info mb-4 mr-2">
+      Usuarios
       </router-link>
 
       <!-- Nesse local que cada component será injetado -->
