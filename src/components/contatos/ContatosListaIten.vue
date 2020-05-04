@@ -3,10 +3,18 @@
         <span>{{ contato.nome}}</span>
         
         <router-link 
-            :to="`/contatos/${contato.id}`"
+            :to="{name: 'contato', params: { id: contato.id } }"
             class="btn btn-info btn-sm mt-2 mb-2 float-right">
             Detalhes
         </router-link>
+        
+        <!--
+        <button
+            class="btn btn-info btn-sm mt-2 mb-2 float-right"
+            @click="verDatalhes">
+            Detalhes
+        </button>
+        -->    
 
     </li>
 </template>
@@ -16,6 +24,12 @@ export default {
         contato:{
             type: Object,
             required: true
+        }
+    },
+    methods:{
+        verDatalhes(event){
+            //this.$router.push(`/contatos/${this.contato.id}`)
+            this.$router.push({name: 'contato', params: {id: this.contato.id } })
         }
     }
     
