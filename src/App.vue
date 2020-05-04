@@ -3,6 +3,7 @@
     
     <div class="jumbotron">
       <h1 class="display-4">Vue Router</h1>
+      <hr>
       <p class="lead">Adicionando rotas a Single Page Applications no Vue</p>
     </div>
 

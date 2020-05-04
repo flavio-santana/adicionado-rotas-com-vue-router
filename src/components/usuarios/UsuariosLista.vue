@@ -2,7 +2,7 @@
     
     <div>
         <h3 class="font-weight-light">Usuarios</h3>
-        
+        <hr>
         <ul class="list-group" v-if="usuarios.length > 0">
             <UsuarioListaIten
                 class="lista-group-item"

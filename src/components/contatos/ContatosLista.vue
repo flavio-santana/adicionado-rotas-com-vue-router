@@ -2,6 +2,7 @@
     
     <div>
         <h3 class="font-weight-light">Contatos</h3>
+        <hr>
         
         <ul class="list-group" v-if="contatos.length > 0">
             <ContatoListaIten
