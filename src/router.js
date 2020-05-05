@@ -5,7 +5,8 @@ import VueRouter from 'vue-router'
 import Home            from './views/Home.vue'
 import Contatos        from './views/contatos/Contatos.vue'
 import ContatoDetalhes from './components/contatos/ContatoDetalhes.vue'
-import ContatosHome     from './components/contatos/ContatosHome.vue'
+import ContatosHome    from './components/contatos/ContatosHome.vue'
+import ContatoEditar   from './components/contatos/ContatoEditar.vue'
 
 // 
 import Usuarios        from './components/usuarios/Usuarios.vue'
@@ -24,6 +25,13 @@ export default new VueRouter({
         component: Contatos,
         children:[
           { path : ':id', component: ContatoDetalhes, name: 'contato' }, 
+          { 
+            path : ':id/editar', 
+            components: {
+              default: ContatoEditar,
+              'contato-detalhes': ContatoDetalhes
+            }
+          }, 
           { path : '', component: ContatosHome }, 
         ] 
       }, // meusite.com/contatos 
