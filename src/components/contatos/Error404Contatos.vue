@@ -1,7 +1,7 @@
 <template>
     <div class="alert alert-warning">
         <h3 class="text-center">
-            Error 404 - Page not found
+            Error 404 - Page not found!
         </h3>
         <p>Página não encontrada</p>
         <button 
