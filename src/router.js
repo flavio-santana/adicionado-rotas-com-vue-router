@@ -19,10 +19,15 @@ export default new VueRouter({
     //mode:'hash', // com a # na url
     linkExactActiveClass:'active',
     routes: [
-      { path : '/', component: Home }, // meusite.com
+      { 
+        path : '/', 
+        component: Home,
+        alias : '/home' 
+      }, // meusite.com
       { 
         path : '/contatos', 
         component: Contatos,
+        alias: '/meus-contatos',
         children:[
           { 
             path : ':id', 
