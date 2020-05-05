@@ -8,7 +8,7 @@ import ContatoDetalhes from './components/contatos/ContatoDetalhes.vue'
 import ContatosHome    from './components/contatos/ContatosHome.vue'
 import ContatoEditar   from './components/contatos/ContatoEditar.vue'
 
-// 
+// Importanto components usuários
 import Usuarios        from './components/usuarios/Usuarios.vue'
 import UsuarioDetalhes from './components/usuarios/UsuarioDetalhes.vue'
 
