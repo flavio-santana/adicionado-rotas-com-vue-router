@@ -19,24 +19,31 @@ export default new VueRouter({
     //mode:'hash', // com a # na url
     linkExactActiveClass:'active',
     routes: [
-      { path : '/', component: Home },
+      { path : '/', component: Home }, // meusite.com
       { 
         path : '/contatos', 
         component: Contatos,
         children:[
-          { path : ':id', component: ContatoDetalhes, name: 'contato' }, 
+          { 
+            path : ':id', 
+            component: ContatoDetalhes, 
+            name: 'contato' 
+          }, // meusite.com/contatos/id 
           { 
             path : ':id/editar', 
             components: {
               default: ContatoEditar,
               'contato-detalhes': ContatoDetalhes
             }
+          }, // meusite.com/contatos/id/editar
+          { 
+            path : '', 
+            component: ContatosHome 
           }, 
-          { path : '', component: ContatosHome }, 
         ] 
       }, // meusite.com/contatos 
        
-      { path : '/usuarios', component: Usuarios }, // meusite.com/contatos 
-      { path : '/usuarios/:id', component: UsuarioDetalhes }, // meusite.com/contatos 
+      { path : '/usuarios', component: Usuarios }, // meusite.com/usuarios 
+      { path : '/usuarios/:id', component: UsuarioDetalhes }, // meusite.com/usuarios/id 
     ]
   })
