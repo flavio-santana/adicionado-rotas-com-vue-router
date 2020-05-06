@@ -29,15 +29,24 @@ export default new VueRouter({
         component: Contatos,
         alias: '/meus-contatos',
         children:[
-          { path : ':id', component: ContatoDetalhes, name: 'contato' }, // meusite.com/contatos/id 
-          { path : ':id/editar', 
-          components: {
+          { path : ':id', 
+            component: ContatoDetalhes, 
+            name: 'contato', 
+            props: true
+          }, // meusite.com/contatos/id 
+          { 
+            path : ':id/editar', 
+            components: {
               default: ContatoEditar,
               'contato-detalhes': ContatoDetalhes
+            },
+            props:  {
+              default:true,
+              'contato-detalhes':true,
             }
           }, // meusite.com/contatos/id/editar
           { path : '', component: ContatosHome },
-          { path : '/contatos*', component: Error404Contatos }  //especifico para contatos
+          { path : '/contatos*', component: Error404Contatos },  //especifico para contatos
         ] 
       }, // meusite.com/contatos 
        

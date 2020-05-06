@@ -2,7 +2,7 @@
     <div>
 
         <h3 class="class-font-weight-light">
-            Editar contato com id: {{ this.$route.params.id }}
+            Editar contato com id: {{ id }}
     
         </h3>
 
@@ -15,3 +15,8 @@
 
     </div>
 </template>
+<script>
+export default {
+    props:['id']
+}
+</script>
