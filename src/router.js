@@ -50,7 +50,7 @@ export default new VueRouter({
               }
             },
             */
-          }, // meusite.com/contatos/id 
+            }, // meusite.com/contatos/id 
           { 
             path : ':id/editar', 
             components: {
