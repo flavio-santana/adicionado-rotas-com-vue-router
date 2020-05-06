@@ -37,7 +37,19 @@ export default new VueRouter({
           { path : ':id', 
             component: ContatoDetalhes, 
             name: 'contato', 
-            props: true
+            props:route=>({
+              //Convertento para inteiro
+              id: +route.params.id
+            })
+            /*
+            props: route=>{
+              return {
+                //Convertento para inteiro
+                id: +route.params.id
+                //id: parseInt(route.params.id)
+              }
+            },
+            */
           }, // meusite.com/contatos/id 
           { 
             path : ':id/editar', 
