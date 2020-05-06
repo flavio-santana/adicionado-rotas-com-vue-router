@@ -13,7 +13,7 @@
 export default {
     props:['id'],
     created(){
-        console.log('Parâmetros da rota: ', this.id)
+        console.log('Parâmetros da rota: ', this.$props)
     }
 }
 </script>

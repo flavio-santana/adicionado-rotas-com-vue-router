@@ -28,6 +28,11 @@ export default new VueRouter({
         path : '/contatos', 
         component: Contatos,
         alias: '/meus-contatos',
+        // Function mode 
+        props:(route)=>{
+          const busca = route.query.busca 
+          return busca ? { busca } : {}
+        },
         children:[
           { path : ':id', 
             component: ContatoDetalhes, 
