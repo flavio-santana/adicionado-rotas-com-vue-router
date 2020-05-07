@@ -17,6 +17,9 @@
 </template>
 <script>
 export default {
-    props:['id']
+    props:['id'],
+    created(){
+        //console.log('Parâmetros: ')
+    }
 }
 </script>

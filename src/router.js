@@ -18,6 +18,12 @@ import UsuarioDetalhes from './components/usuarios/UsuarioDetalhes.vue'
 Vue.use(VueRouter)
 
 //
+const extrairParametroId = route =>({
+  //Convertento para inteiro
+  id: +route.params.id
+})
+
+//
 export default new VueRouter({
     mode:'history',
     //mode:'hash', // com a # na url
@@ -34,15 +40,14 @@ export default new VueRouter({
           return busca ? { busca } : {}
         },
         children:[
-          { path : ':id', 
+          { 
+            // fazendo validação com expressão regular
+            path : ':id(\\d+)', 
             component: ContatoDetalhes, 
             name: 'contato', 
-            props:route=>({
-              //Convertento para inteiro
-              id: +route.params.id
-            })
+            props: extrairParametroId,
             /*
-            props: route=>{
+            props: route=> {
               return {
                 //Convertento para inteiro
                 id: +route.params.id
@@ -52,14 +57,17 @@ export default new VueRouter({
             */
             }, // meusite.com/contatos/id 
           { 
-            path : ':id/editar', 
+            path : ':id(\\d+)/editar',
+            //path : ':id(\\d+)/editar/:opcional?', 
+            //path : ':id(\\d+)/editar/:zeroOuMais*', 
+            //path : ':id(\\d+)/editar/:umOuMais+', 
             components: {
               default: ContatoEditar,
               'contato-detalhes': ContatoDetalhes
             },
             props:  {
-              default:true,
-              'contato-detalhes':true,
+              default:extrairParametroId,
+              'contato-detalhes':extrairParametroId,
             }
           }, // meusite.com/contatos/id/editar
           { path : '', component: ContatosHome },
@@ -68,7 +76,7 @@ export default new VueRouter({
       }, // meusite.com/contatos 
        
       { path : '/usuarios', component: Usuarios }, // meusite.com/usuarios 
-      { path : '/usuarios/:id', component: UsuarioDetalhes }, // meusite.com/usuarios/id 
+      { path : '/usuarios/:id(\\d+)', component: UsuarioDetalhes }, // meusite.com/usuarios/id 
       { path : '*', component: Error404 }
     ]
   })
