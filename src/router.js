@@ -24,7 +24,7 @@ const extrairParametroId = route =>({
 })
 
 //
-export default new VueRouter({
+const router = new VueRouter({
     mode:'history',
     //mode:'hash', // com a # na url
     linkExactActiveClass:'active',
@@ -79,4 +79,18 @@ export default new VueRouter({
       { path : '/usuarios/:id(\\d+)', component: UsuarioDetalhes }, // meusite.com/usuarios/id 
       { path : '*', component: Error404 }
     ]
-  })
+})
+
+// criando guarda de rota global beforeEach   
+router.beforeEach ((to, from, next) => {
+  console.log('beforeEach')
+  next()
+})
+
+// criando guarda de rota global afterEach
+router.afterEach ((to, from) => {
+  console.log('afterEach')  
+})
+
+
+export default router 
