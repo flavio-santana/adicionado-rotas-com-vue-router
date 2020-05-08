@@ -67,7 +67,7 @@ const router = new VueRouter({
              */ 
             beforeEnter(to, from, next){
               console.log('beforeEnter')
-              if(to.query.autentication === 'true'){
+              if(to.query.autenticado === 'true'){
                 return next() 
               }
               next('/contatos')
