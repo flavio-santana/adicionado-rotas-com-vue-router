@@ -60,7 +60,18 @@ const router = new VueRouter({
             path : ':id(\\d+)/editar',
             //path : ':id(\\d+)/editar/:opcional?', 
             //path : ':id(\\d+)/editar/:zeroOuMais*', 
-            //path : ':id(\\d+)/editar/:umOuMais+', 
+            //path : ':id(\\d+)/editar/:umOuMais+',
+            /**
+             * a guarda abaixo, somente será acessada 
+             * quando a rota editar for executada. 
+             */ 
+            beforeEnter(to, from, next){
+              console.log('beforeEnter')
+              if(to.query.autentication === 'true'){
+                return next() 
+              }
+              next('/contatos')
+            }, 
             components: {
               default: ContatoEditar,
               'contato-detalhes': ContatoDetalhes
