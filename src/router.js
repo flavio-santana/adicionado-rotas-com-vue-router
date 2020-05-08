@@ -66,11 +66,14 @@ const router = new VueRouter({
              * quando a rota editar for executada. 
              */ 
             beforeEnter(to, from, next){
+              
               console.log('beforeEnter')
-              if(to.query.autenticado === 'true'){
-                return next() 
-              }
-              next('/contatos')
+              next()
+              // if(to.query.autenticado === 'true'){
+              //   return next() 
+              // }
+              // next('/contatos')
+
             }, 
             components: {
               default: ContatoEditar,
