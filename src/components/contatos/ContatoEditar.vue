@@ -25,6 +25,20 @@ export default {
     beforeRouteEnter(to, from, next){
         console.log('beforeRouteEnter')
         next()
+    },
+    /**
+     * Utilizada para previnir que um determinado usuário 
+     * saia de uma determinada rota 
+     */
+    beforeRouteLeave(to, from, next){
+
+        console.log('beforeRouteLeave')
+
+        const confirmar = window.confirm('Deseja realmente sair?')
+        
+        next(confirmar)
+
+        next();
     }
 }
 </script>
