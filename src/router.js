@@ -34,6 +34,7 @@ const router = new VueRouter({
         path : '/contatos', 
         component: Contatos,
         alias: '/meus-contatos',
+        //name: 'contatos',
         // Function mode 
         props:(route)=>{
           const busca = route.query.busca 
@@ -68,7 +69,17 @@ const router = new VueRouter({
             beforeEnter(to, from, next){
               
               console.log('beforeEnter')
-              next()
+              
+              //next(true) // navegação continua
+
+              //next(false) // navegação é bloqueada
+
+              //next('/contatos') // redirecionando a navegação 
+
+              //next({name:'contatos'}) // redirecionando a navegação
+
+              //next({path:'contatos'}) // redirecionando a navegação 
+              
               // if(to.query.autenticado === 'true'){
               //   return next() 
               // }
@@ -84,7 +95,7 @@ const router = new VueRouter({
               'contato-detalhes':extrairParametroId,
             }
           }, // meusite.com/contatos/id/editar
-          { path : '', component: ContatosHome },
+          { path : '', component: ContatosHome, name: 'contatos' },
           { path : '/contatos*', component: Error404Contatos },  //especifico para contatos
         ] 
       }, // meusite.com/contatos 
@@ -99,6 +110,18 @@ const router = new VueRouter({
 router.beforeEach ((to, from, next) => {
   console.log('beforeEach')
   next()
+})
+
+
+/**
+ * Guarda global
+ * Executada entes da rota ser executada (confirmada)
+ */
+router.beforeResolve((to, from, next) => {
+
+  console.log('beforeResolve')
+
+  next();
 })
 
 // criando guarda de rota global afterEach
