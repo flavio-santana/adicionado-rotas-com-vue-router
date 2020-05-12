@@ -27,10 +27,29 @@
       Usuarios
       </router-link>
 
-      <!-- Nesse local que cada component será injetado -->
-      <router-view></router-view>
+      <!--Animando navegação com transition -->
+      <transition name="slide" mode="out-in">     
+        <router-view></router-view>
+      </transition>
 
+      <!-- Nesse local que cada component será injetado 
+      <router-view></router-view>
+      -->
+      
     </div>
     
   </div>
 </template>
+
+<style scoped>
+  
+  .slide-enter, .slide-leave-to{
+    transform: translate(-50px);
+    opacity: 0;
+  }
+
+  .slide-enter-active, .slide-leave-active{
+    transition: all 0.3s;
+  }
+
+</style>
