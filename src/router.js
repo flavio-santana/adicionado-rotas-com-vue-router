@@ -34,6 +34,27 @@ const router = new VueRouter({
     mode:'history',
     //mode:'hash', // com a # na url
     linkExactActiveClass:'active',
+    //
+    scrollBehavior (to, from, savedPosition){
+      
+      //return {x:0 , y:250}
+
+      if(savedPosition){
+
+        return savedPosition
+
+      }
+
+      if(to.hash){
+        return {
+          selector: to.hash,
+          offset: {x:0 , y:250}
+        }
+      }
+
+      return {x:0 , y:0}
+
+    },
     routes: [
       { path : '/', component: Home, alias : '/home' }, // meusite.com
       { path : '/login', component: Login }, // meusite.com
