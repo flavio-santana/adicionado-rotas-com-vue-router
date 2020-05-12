@@ -2,16 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router' 
 
 // Importanto components
-import Home            from './views/Home.vue'
-import Contatos        from './views/contatos/Contatos.vue'
+//import Home            from './views/Home.vue'
+//import Contatos        from './views/contatos/Contatos.vue'
 import Error404        from './views/Error404.vue'
-import ContatoDetalhes from './components/contatos/ContatoDetalhes.vue'
-import ContatosHome    from './components/contatos/ContatosHome.vue'
-import ContatoEditar   from './components/contatos/ContatoEditar.vue'
+//import ContatoDetalhes from './components/contatos/ContatoDetalhes.vue'
+//import ContatosHome    from './components/contatos/ContatosHome.vue'
+//import ContatoEditar   from './components/contatos/ContatoEditar.vue'
 import Error404Contatos  from './components/contatos/Error404Contatos.vue'
 
 // Importanto components usuários
-import Usuarios        from './components/usuarios/Usuarios.vue'
+//import Usuarios        from './components/usuarios/Usuarios.vue'
 import UsuarioDetalhes from './components/usuarios/UsuarioDetalhes.vue'
 
 //
@@ -19,6 +19,22 @@ import Login from './views/login/Login.vue'
 
 //
 import EventBus from './event-bus'
+
+/**
+ * Outra forma de implementar o lazy loading
+ * 
+ * Dessa forma os components não são criados no starting
+ * da aplicação
+ */
+const Home = () => import ('./views/Home.vue')
+
+/**
+ * Agrupando por pacote 
+ */
+const Contatos = () => import (/* webpackChunkName: "contatos" */'./views/contatos/Contatos.vue') 
+const ContatosHome = () => import (/* webpackChunkName: "contatos" */'./components/contatos/ContatosHome.vue') 
+const ContatoDetalhes = () => import (/* webpackChunkName: "contatos" */'./components/contatos/ContatoDetalhes.vue') 
+const ContatoEditar = () => import (/* webpackChunkName: "contatos" */'./components/contatos/ContatoEditar.vue') 
 
 //
 Vue.use(VueRouter)
@@ -56,11 +72,31 @@ const router = new VueRouter({
 
     },
     routes: [
-      { path : '/', component: Home, alias : '/home' }, // meusite.com
-      { path : '/login', component: Login }, // meusite.com
+      { 
+        path : '/', 
+        component: Home,
+        //component: () => import('./views/Home.vue'),  
+        alias : '/home' 
+      }, // meusite.com
+      { 
+        path : '/login', 
+        component: Login 
+      }, // meusite.com
       { 
         path : '/contatos', 
+        
+        /**
+         * Lazy loading
+         * 
+         * Importando os components da forma abaixo, deixamos a nossa aplicação
+         * mais rapida, uma vez que os components são carregados sob demanda. 
+         * 
+         * Fazendo dessa maneira, iremos favorecer os usuários que possuem uma 
+         * conexão com a internet mais lenta.    
+         */ 
         component: Contatos,
+        //component: () => import('./views/contatos/Contatos.vue'),
+
         alias: '/meus-contatos',
         //name: 'contatos',
         // Function mode 
@@ -73,6 +109,7 @@ const router = new VueRouter({
             // fazendo validação com expressão regular
             path : ':id(\\d+)', 
             component: ContatoDetalhes, 
+            //component: () => import('./components/contatos/ContatoDetalhes.vue'),
             name: 'contato', 
             props: extrairParametroId,
             /*
@@ -127,14 +164,30 @@ const router = new VueRouter({
               'contato-detalhes':extrairParametroId,
             }
           }, // meusite.com/contatos/id/editar
-          { path : '', component: ContatosHome, name: 'contatos' },
-          { path : '/contatos*', component: Error404Contatos },  //especifico para contatos
+          { 
+            path : '', 
+            component: ContatosHome, 
+            name: 'contatos' 
+          },
+          { 
+            path : '/contatos*', 
+            component: Error404Contatos 
+          },  //especifico para contatos
         ] 
       }, // meusite.com/contatos 
-       
-      { path : '/usuarios', component: Usuarios }, // meusite.com/usuarios 
-      { path : '/usuarios/:id(\\d+)', component: UsuarioDetalhes }, // meusite.com/usuarios/id 
-      { path : '*', component: Error404 }
+      { 
+        path : '/usuarios', 
+        //component: Usuarios
+        component: () => import('./components/usuarios/Usuarios.vue'), 
+      }, // meusite.com/usuarios 
+      { 
+        path : '/usuarios/:id(\\d+)', 
+        component: UsuarioDetalhes 
+      }, // meusite.com/usuarios/id 
+      { 
+        path : '*', 
+        component: Error404 
+      }
     ]
 })
 
