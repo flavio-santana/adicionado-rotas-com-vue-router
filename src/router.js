@@ -15,6 +15,12 @@ import Usuarios        from './components/usuarios/Usuarios.vue'
 import UsuarioDetalhes from './components/usuarios/UsuarioDetalhes.vue'
 
 //
+import Login from './views/login/Login.vue'
+
+//
+import EventBus from './event-bus'
+
+//
 Vue.use(VueRouter)
 
 //
@@ -30,6 +36,7 @@ const router = new VueRouter({
     linkExactActiveClass:'active',
     routes: [
       { path : '/', component: Home, alias : '/home' }, // meusite.com
+      { path : '/login', component: Login }, // meusite.com
       { 
         path : '/contatos', 
         component: Contatos,
@@ -59,6 +66,10 @@ const router = new VueRouter({
             }, // meusite.com/contatos/id 
           { 
             path : ':id(\\d+)/editar',
+            /**
+             * Campo personalizado
+             */
+            meta : {requerAutenticacao : true},
             //path : ':id(\\d+)/editar/:opcional?', 
             //path : ':id(\\d+)/editar/:zeroOuMais*', 
             //path : ':id(\\d+)/editar/:umOuMais+',
@@ -70,7 +81,7 @@ const router = new VueRouter({
               
               console.log('beforeEnter')
               
-              //next(true) // navegação continua
+              next(true) // navegação continua
 
               //next(false) // navegação é bloqueada
 
@@ -108,7 +119,27 @@ const router = new VueRouter({
 
 // criando guarda de rota global beforeEach   
 router.beforeEach ((to, from, next) => {
+  
   console.log('beforeEach')
+  
+  console.log('Requer autenticação', to.meta.requerAutenticacao)
+
+  const estaAutenticado = EventBus.autenticado
+  
+  //console.log(to.matched)
+
+  if(to.matched.some(rota => rota.meta.requerAutenticacao)){
+
+    if(!estaAutenticado){
+      next({
+        path: '/login',
+        query: {redirecionar: to.fullPath}
+      })
+      return
+    }
+
+  }
+
   next()
 })
 
