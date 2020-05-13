@@ -29,7 +29,7 @@ import EventBus from './event-bus'
 const Home = () => import ('./views/Home.vue')
 
 /**
- * Agrupando por pacote 
+ * Agrupando os components por pacote 
  */
 const Contatos = () => import (/* webpackChunkName: "contatos" */'./views/contatos/Contatos.vue') 
 const ContatosHome = () => import (/* webpackChunkName: "contatos" */'./components/contatos/ContatosHome.vue') 
