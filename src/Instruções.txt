@@ -1,0 +1,6 @@
+Após clonar o projeto, é preciso instalar as depências para que ele funcione. 
+
+Para fazer a instalação das depências, com um terminal aberto e dentro do diretório do projeto, 
+execute o comando a seguir: 
+
+npm install 
