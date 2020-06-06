@@ -10,6 +10,7 @@
   "dependencies": {
     "clear": "^0.1.0",
     "vue": "^2.6.11",
+    "vue-meta": "^2.3.4",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {

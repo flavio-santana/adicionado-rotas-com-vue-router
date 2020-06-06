@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router' 
+import VueMeta from 'vue-meta'
 
 // Importanto components
 //import Home            from './views/Home.vue'
@@ -38,6 +39,14 @@ const ContatoEditar = () => import (/* webpackChunkName: "contatos" */'./compone
 
 //
 Vue.use(VueRouter)
+
+Vue.use(VueMeta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  ssrAttribute: 'data-vue-meta-server-rendered',
+  tagIDKeyName: 'vmid',
+  refreshOnceOnNavigation: true
+})
 
 //
 const extrairParametroId = route =>({
