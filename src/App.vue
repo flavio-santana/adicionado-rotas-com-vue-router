@@ -4,7 +4,11 @@
     <div class="jumbotron">
       <h1 class="display-4">Vue Router</h1>
       <hr>
-      <p class="lead">Adicionando rotas a Single Page Applications no Vue</p>
+      <p class="lead">
+        <a target="_blanck" v-bind:href="url">
+        Adicionando rotas a Single Page Applications no Vue
+        </a>
+      </p>
     </div>
 
     <div class="container">
@@ -57,6 +61,11 @@
 <script>
   export default {
     name: 'App',
+    data(){
+      return {
+        url : '/usuarios' 
+      }
+    },
     metaInfo: {
       
         // if no subcomponents specify a metaInfo.title, this title will be used
